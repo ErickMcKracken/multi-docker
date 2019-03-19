@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t erickmckracken/react-test -f ./client/Dockerfile.dev . /client
+
+script:
+  - docker run erickmckracken/react-test npm test -- -- coverage
+
+after_success: 
+  - docker build -t erickmckracken/multi-client ./client
+  - docker build -t erickmckracken/multi-nginx ./nginx
+  - docker build -t erickmckracken/multi-server ./multi-server
+  - docker build -t erickmckracken/multi-worker ./worker
+
+  # login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those image and push them to dockerhub
+  - docker push erickmckracken/multi-client ./client
+  - docker push erickmckracken/multi-nginx ./nginx
+  - docker push erickmckracken/multi-server ./multi-server
+  - docker push erickmckracken/multi-worker ./worker
