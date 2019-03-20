@@ -17,7 +17,7 @@ after_success:
   # login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take those image and push them to dockerhub
-  - docker push erickmckracken/multi-client ./client
-  - docker push erickmckracken/multi-nginx ./nginx
-  - docker push erickmckracken/multi-server ./multi-server
-  - docker push erickmckracken/multi-worker ./worker
+  - docker push erickmckracken/multi-client 
+  - docker push erickmckracken/multi-nginx 
+  - docker push erickmckracken/multi-server 
+  - docker push erickmckracken/multi-worker 
