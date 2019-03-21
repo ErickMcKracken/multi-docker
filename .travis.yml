@@ -21,3 +21,16 @@ after_success:
   - docker push erickmckracken/multi-nginx 
   - docker push erickmckracken/multi-server 
   - docker push erickmckracken/multi-worker 
+
+deploy:
+  provider: elasticbeanstalk
+  region: ca-central-1
+  app: multi-docker
+  env: Multi-Docker4
+  bucket_name: elasticbeanstalk-ca-central-1-676100722752
+  bucket_path: docker-multi
+  on: 
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
