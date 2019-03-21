@@ -16,7 +16,7 @@ after_success:
 
   # login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  #Take those fuc************ images and push them to dockerhub
+  #Take those fuc*************** images and push them to dockerhub
   - docker push erickmckracken/multi-client 
   - docker push erickmckracken/multi-nginx 
   - docker push erickmckracken/multi-server 
@@ -25,8 +25,8 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: ca-central-1
-  app: multi-docker4
-  env: Multi-Docker4-env
+  app: Multi-Docker4
+  env: MultiDocker4-env
   bucket_name: elasticbeanstalk-ca-central-1-676100722752
   bucket_path: docker-multi
   on: 
